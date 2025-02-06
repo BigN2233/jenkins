@@ -8,15 +8,18 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'AKIAZZA6M2ZULUVR45O4' 
+                    credentialsId: 'Jenkins' 
                 ]]) {
-                    sh 'aws sts get-caller-identity'
+                    sh '''
+                    echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+                    aws sts get-caller-identity
+                    '''
                 }
             }
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/BigN2233/jenkins' 
+                git branch: 'main', url: 'https://github.com/BigN2233/jenkins/' 
             }
         }
         stage('Initialize Terraform') {
@@ -30,7 +33,7 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'AKIAZZA6M2ZULUVR45O4'
+                    credentialsId: 'Jenkins'
                 ]]) {
                     sh '''
                     export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
