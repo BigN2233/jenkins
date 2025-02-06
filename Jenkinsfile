@@ -8,7 +8,7 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'Jenkins' 
+                    credentialsId: 'AKIAZZA6M2ZULUVR45O4' 
                 ]]) {
                     sh 'aws sts get-caller-identity'
                 }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'Jenkins'
+                    credentialsId: 'AKIAZZA6M2ZULUVR45O4'
                 ]]) {
                     sh '''
                     export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
