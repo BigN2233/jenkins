@@ -11,7 +11,7 @@ pipeline {
                     credentialsId: 'Jenkins' 
                 ]]) {
                     sh '''
-                    echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+                    echo "AKIAZZA6M2ZULUVR45O4: $AWS_ACCESS_KEY_ID"
                     aws sts get-caller-identity
                     '''
                 }
@@ -36,8 +36,8 @@ pipeline {
                     credentialsId: 'Jenkins'
                 ]]) {
                     sh '''
-                    export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                    export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                    export AKIAZZA6M2ZULUVR45O4=$AWS_ACCESS_KEY_ID
+                    export quZQoH9FjyS6wrsz/dVW4LLFcxCFhWkd0xDZQzs+=$AWS_SECRET_ACCESS_KEY
                     terraform plan -out=tfplan
                     '''
                 }
@@ -51,8 +51,8 @@ pipeline {
                     credentialsId: 'Jenkins'
                 ]]) {
                     sh '''
-                    export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                    export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                    export AKIAZZA6M2ZULUVR45O4=$AWS_ACCESS_KEY_ID
+                    export quZQoH9FjyS6wrsz/dVW4LLFcxCFhWkd0xDZQzs+=$AWS_SECRET_ACCESS_KEY
                     terraform apply -auto-approve tfplan
                     '''
                 }
