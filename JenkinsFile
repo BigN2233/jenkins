@@ -8,18 +8,15 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'AWS_SECRET_ACCESS_KEY' 
+                    credentialsId: 'Jenkins' 
                 ]]) {
-                    sh '''
-                    echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
-                    aws sts get-caller-identity
-                    '''
+                    sh 'aws sts get-caller-identity'
                 }
             }
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/tiqsclass6/Templates' 
+                git branch: 'main', url: 'https://github.com/BigN2233/jenkins' 
             }
         }
         stage('Initialize Terraform') {
@@ -33,7 +30,7 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'AWS_SECRET_ACCESS_KEY'
+                    credentialsId: 'Jenkins'
                 ]]) {
                     sh '''
                     export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
@@ -48,7 +45,7 @@ pipeline {
                 input message: "Approve Terraform Apply?", ok: "Deploy"
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'AWS_SECRET_ACCESS_KEY'
+                    credentialsId: 'Jenkins'
                 ]]) {
                     sh '''
                     export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
